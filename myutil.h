@@ -1,0 +1,1 @@
+   int initstr(char *m);
