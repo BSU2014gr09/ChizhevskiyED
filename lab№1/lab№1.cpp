@@ -1,4 +1,4 @@
-п»ї// labв„–1.cpp: Р’ СЃС‚СЂРѕРєРµ СѓРґР°Р»РёС‚СЊ РІСЃРµ СЃР»РѕРІР° Р·Р°РґР°РЅРЅРѕР№ РґР»РёРЅС‹, РЅР°С‡РёРЅР°СЋС‰РёРµСЃСЏ СЃ С†РёС„СЂС‹.
+// lab№1.cpp: В строке удалить все слова заданной длины, начинающиеся с цифры.
 
 #include <iostream>
 #include <conio.h>
@@ -8,20 +8,19 @@ using namespace std;
 
 int main()
 {
-    char *m = new char [211];   // РёСЃС…РѕРґРЅР°СЏ СЃС‚СЂРѕРєР°
-    char *str = new char[211];   // СЃС‚СЂРѕРєР° РєСѓРґР° РєРѕРїРёСЂСѓРµРј 
+    char *m = new char [211];   // исходная строка
+    char *str = new char[211];   // строка куда копируем 
 
     setlocale(LC_ALL, "Russian");
 
     if (printcondition() != 1 )
          return -1; 
 
-    initstr(m);
-
+    initstr(m); 
     strokpreob(m,str);
 
-    cout << "РСЃС…РѕРґРЅР°СЏ СЃС‚СЂРѕРєР°: " << m << endl ;
-    cout << "РљРѕРЅРµС‡РЅР°СЏ СЃС‚СЂРѕРєР°: " << str << endl ;
+    cout << "Исходная строка: " << m << endl ;
+    cout << "Конечная строка: " << str << endl ;
 
     delete[]m;
     delete[]str;

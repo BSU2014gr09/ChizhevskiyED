@@ -1,25 +1,20 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <conio.h> 
 #include <iostream>
+#include <stdio.h>
+
 
 using namespace std;
 
+
 int initstr(char *m)
 {
-    cout << "Введите строку, признаком конца строки будет являтся '.' ";
-    *m=_getch();
-    _putch(*m);
-
-    while (*m != '.')
-    {
-        m++;
-        *m = _getch();
-        _putch(*m);
-    }
-
-      *m = '\0';
-
-    return 0;
+     cout << "Введите строку ";
+     gets(m); 
+     return 0;
 }
+
+
 
 int printcondition()
 {
@@ -53,8 +48,11 @@ int printcondition()
 void strokpreob(char *m, char *str)
 {
      char *k;  // сохраняем указатель на слово для копирования 
-     int length=0;
-     int N=4; // длина слова
+     char f;  
+     int N; // длина слова, которое нужно удалить
+
+     cout << "Введите длину слова, которое будете удалять: ";
+     cin >> N;
 
      while(*m!='\0')
     {
@@ -67,19 +65,14 @@ void strokpreob(char *m, char *str)
 
        k=m;
 
-       length=0;
-       while (*m!= ' ' && *m!= '\0' )
+      while (*m!= ' ' && *m!= '\0' )
        {
            m++;
-           length++;
        }
 
-       if(length == N || isdigit(*k) )
-       {
-
-       }
-
-       else
+       f=*m;
+       *m= '\0';
+       if(!(strlen(k) == N && isdigit(*k) ))
        {
            while(k!=m)
            {
@@ -88,10 +81,10 @@ void strokpreob(char *m, char *str)
                str++;
            }
        }
-
-    }
-
+       *m=f;
+     }
     *str='\0';
+    
 
     return;
 }
