@@ -25,10 +25,10 @@ public:
   Date nextDate(Date d);
   Date previousDate(Date d);
   bool Date::valid();
-  Date operator ++(); // prefix
-  Date operator ++(int); // postfix
-  Date operator --(); // prefix
-  Date operator --(int); // postfix
+  Date operator ++(); 
+  Date operator ++(int); 
+  Date operator --(); 
+  Date operator --(int); 
   void addDays(int);
   void subDays(int);
   int  cmpDate(Date);
