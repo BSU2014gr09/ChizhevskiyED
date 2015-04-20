@@ -1,28 +1,36 @@
-enum Month {Jan = 1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec};
-
 struct Date{
 
 private:
   int    day;
-  Month  month;
+  int  month;
   int    year;
 
 public:
-  Date(int d = 1, Month m = Jan, int y = 2015)
+  Date(int d = 1, int m = 1, int y = 2015)
   {
-      setDay(d);
       setMonth(m);
+      setDay(d);
       setYear(y);
   }
 
   int setDay(int d);
-  int setMonth(Month m);
+  int setMonth(int m);
   int setYear(int y);
 
   int   getDay(void);
-  Month getMonth(void);
+  int getMonth(void);
   int   getYear(void);
 
   void  printDate(void);
+  Date nextDate(Date d);
+  Date previousDate(Date d);
+  bool Date::valid();
+  Date operator ++(); // prefix
+  Date operator ++(int); // postfix
+  Date operator --(); // prefix
+  Date operator --(int); // postfix
+  void addDays(int);
+  void subDays(int);
+  int  cmpDate(Date);
 
 };

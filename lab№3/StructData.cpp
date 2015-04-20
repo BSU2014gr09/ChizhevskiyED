@@ -7,35 +7,57 @@ using namespace std;
 
 int main()
 {         
-    Date *pDate = new Date(12, Dec, 2015);
+    Date *pDate = new Date(30, 12, 2015);
     int d;
     int y;
-    int m;
+    int m,a;
 
     setlocale(LC_ALL, "Russian");
 
-     pDate->printDate();
+    cout << "Дата по умолчанию: ";
 
-    cout << "Введите месяц(Jan,Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec): " ;
+    pDate->printDate();
+    (*pDate)++;
+
+    cout << "Следующий день: ";
+    pDate->printDate();
+
+    cout << "Предыдущий день: ";
+    (*pDate)--;
+    pDate->printDate();
+    
+
+    cout << "Введите месяц: " ;
     cin  >> m;
     cout << "Введите число: ";
     cin >> d;
     cout << "Введите год: ";
     cin >> y;
 
+    pDate->setMonth(m);
+    pDate->setYear(y);
+    pDate->setDay(d);
 
-    if (pDate->setMonth((Month) m) == 0)
+    if (!pDate->valid())
     {
-        cout << "Такого месяца нет. Установил январь." << endl;
-    }
-    if (pDate->setYear(y) == 0)
-    {
-        cout << "Такого года нет. Установил 2000." << endl;
-    }
-    if (pDate->setDay(d) == 0)
-    {
-        cout << "Такого дня нет. Установил 1." << endl;
-    }
+        cout << "Date is not valid. Set to 1.1.2015." << endl;
+            pDate->setMonth(1);
+            pDate->setYear(2015);
+            pDate->setDay(1);
+    } 
+     pDate->printDate();
+
+    cout << "На сколько дней увеличить дату ";
+    cin >> a;
+
+    pDate->addDays(a);
+
+    pDate->printDate();
+
+    cout << "На сколько дней уменьшить дату ";
+    cin >> a;
+
+    pDate->subDays(a);
 
     pDate->printDate();
 
