@@ -17,10 +17,7 @@ int main()
          return -1; 
 
     initstr(m); 
-    strokpreob(m,str);
-
-    cout << "Исходная строка: " << m << endl ;
-    cout << "Конечная строка: " << str << endl ;
+    strokpreob_2(m, str);
 
     delete[]m;
     delete[]str;
