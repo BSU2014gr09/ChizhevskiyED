@@ -4,14 +4,17 @@
 using namespace std;
 
 
-int main(int argc, char* argv[])
+int main()
 {
     date today;
     date daybefore;
     date *tomorrow = new date;
     int i;
 
-    today = SetDate(03, 05, 2015);
+   /* today = SetDate(19, 05, 2015); */
+    cout << "--------";
+    today = InputDate();
+    
 
     *tomorrow = NextDate(today);
     daybefore = PreviousDate(today);
@@ -43,7 +46,8 @@ int main(int argc, char* argv[])
 
     cout << endl;
     
-    PrintDate(today);
+    /* PrintDate(today); */
+    
     int rc = cmpDate(today, *tomorrow);
     if (rc == 0)
         cout << " equal to ";
@@ -55,11 +59,15 @@ int main(int argc, char* argv[])
         cout << " invalid date ";
     PrintDate(tomorrow);
 
+    setlocale(LC_ALL, "Russian");
+    cout << endl;
+    cout << "¬ведите две даты дл€ вычислени€ разницы между ними" << endl;
+
     date d1,d2;
     d1 = InputDate();
     d2 = InputDate();
 
-    
+   
     cout << "Difference between d1 and d2 : " << SubDates(d1, d2) << " days" << endl;
 
 

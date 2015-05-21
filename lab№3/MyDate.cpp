@@ -233,20 +233,24 @@ date InputDate()
 
     cout << "---------------------" << endl;
 
-    do
-    {
+     do
+     {
      cout << " Enter day: ";
      cin >> da.day;
      cout << " Enter month: ";
      cin >> da.month;
      cout << " Enter year: ";
      cin >> da.year;
-    }
-     while (!isDateValid(da));
+     if (!isDateValid(da))
+         cout << "Date is not valid. Try again." << endl;
+     }
+     while(!isDateValid(da));
+    
      cout << endl;
      cout << " " ;
      
-     cout << "Date: "; PrintDate(da);
+     cout << "Date: ";
+     PrintDate(da);
 
     return da;
 }
