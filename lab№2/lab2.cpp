@@ -1,10 +1,12 @@
-﻿#include "stdafx.h"
-#include <conio.h>
+﻿#include <conio.h>
 #include <time.h>
 #include <iostream>
+#include "stdafx.h"
 #include "myfunc.h"
 
+
 using namespace std;
+
 
 int main()
 {   

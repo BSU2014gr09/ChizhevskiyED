@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "myfunc.h"
 #include <iostream>
 #include <conio.h>
@@ -20,13 +20,14 @@ int lab2()
      int i=0;
      int k=0;
      int N=0;
+     int a,b;
 
-     cout << "Ââåäèòå ðàçìåð êâàäðàòíîé ìàòðèöû: ";
+     cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚Ð½Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹: ";
      cin >> N;
 
       if (N < 2 )                                                                
        { 
-           cout <<  "Ìàòðèöà äëÿ èíâàëèäîâ, ââåäèòå íîðìàëüíóþ ìàòðèöó, íàïðèìåð 2õ2:" << endl;
+           cout <<  "ÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ð° Ð´Ð»Ñ Ð¸Ð½Ð²Ð°Ð»Ð¸Ð´Ð¾Ð², Ð²Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ñ€Ð¼Ð°Ð»ÑŒÐ½ÑƒÑŽ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñƒ, Ð½Ð°Ð¿Ñ€Ð¸Ð¼ÐµÑ€ 2Ñ…2:" << endl;
            return 0;
        }
 
@@ -35,21 +36,31 @@ int lab2()
     for (i = 0; i < N; i++)  
         Mas[i] = new int [N];
 
-    cout << "1. Ââåñòè ìàòðèöó ðóêàìè" << endl;
-    cout << "2. Ïðîèíèöèàëèçèðîâàòü ìàòðèöó ñëó÷àéíûìè ÷èñëàìè" << endl;
+    cout << "1. Ð’Ð²ÐµÑÑ‚Ð¸ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñƒ Ñ€ÑƒÐºÐ°Ð¼Ð¸" << endl;
+    cout << "2. ÐŸÑ€Ð¾Ð¸Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñƒ ÑÐ»ÑƒÑ‡Ð°Ð¹Ð½Ñ‹Ð¼Ð¸ Ñ‡Ð¸ÑÐ»Ð°Ð¼Ð¸" << endl;
 
     vvodMatr(Mas,N);
 
-    k=MinElement(Mas, N);
-     cout << "Íà÷àëüíàÿ ìàòðèöà: "  << endl;
-    printarray(Mas, N);
+    // k=MinElement(Mas, N);
+      k=MinElementNew(Mas, N, &a, &b);
+     cout << "ÐÐ°Ñ‡Ð°Ð»ÑŒÐ½Ð°Ñ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ð°: "  << endl;
+
+     printarray(Mas, N);
+
 
     cout << endl;
 
-    cout << "Êîíå÷íàÿ ìàòðèöà: "  << endl;
+    // changesign(Mas,N,k);
 
-    changesign(Mas,N,k);
+    if (a == -1)
+     cout << "ÐœÐ¸Ð½. ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ " << k << " Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÑ Ð¿Ð¾Ð´ Ð³Ð»Ð°Ð²Ð½Ð¾Ð¹ Ð´Ð¸Ð°Ð³Ð¾Ð½Ð°Ð»ÑŒÑŽ" <<endl;
+    else
+      Mas[a][b] = (-1)*Mas[a][b];
+
+    cout << "ÐšÐ¾Ð½ÐµÑ‡Ð½Ð°Ñ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ð°: "  << endl;
+
     printarray(Mas, N);
+
 
     for (i = 0; i < N; i++)
         delete[] Mas[i];
@@ -91,9 +102,38 @@ int MinElement(int **mas, int m )
         }
      }
 
-     cout << "Ìèíèìàëüíûé ýëåìåíò: " << MinElement <<endl;
+     cout << "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚: " << MinElement <<endl;
 
         return MinElement;
+ }
+
+int MinElementNew(int **mas, int m, int *a, int *b ) // a, b - index minimalnogo elementa
+ {
+     int MinElement=mas[0][0];
+     *a = 0;
+     *b = 0;
+
+     for (int i=0; i<m; i++)
+     {
+        for(int j=0; j<m; j++)
+        {
+            if (MinElement > mas[i][j])
+             { 
+                 MinElement = mas[i][j];
+                 *a = i;
+                 *b = j;
+                 if (j < i)
+                    { 
+                      *a = -1; 
+                      *b = -1; 
+                    }
+             }
+        }
+     }
+
+     cout << "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚: " << MinElement <<endl;
+
+    return MinElement;
  }
 
 void changesign(int **mas, int m, int k)
@@ -112,7 +152,7 @@ void changesign(int **mas, int m, int k)
         }
      }
         if (did == false)
-            cout << "Ìèí. ýëåìåíò " << k << " íàõîäèòñÿ ïîä ãëàâíîé äèàãîíàëüþ." <<endl;
+            cout << "ÐœÐ¸Ð½. ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ " << k << " Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÑ Ð¿Ð¾Ð´ Ð³Ð»Ð°Ð²Ð½Ð¾Ð¹ Ð´Ð¸Ð°Ð³Ð¾Ð½Ð°Ð»ÑŒÑŽ." <<endl;
         return ;
  }
 
@@ -130,16 +170,16 @@ int printcondition()
 {
     int z=0;
 
-    cout << "Ââåäèòå 0 äëÿ ïðîñìîòðà óñëîâèÿ: " << endl;
-    cout << "Íàæìèòå 1, ÷òîáû ïîëó÷èòü ðåøåíèå" << endl;
-    cout << "Íàæìèòå 2, ÷òîáû âûéòè" << endl;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ 0 Ð´Ð»Ñ Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€Ð° ÑƒÑÐ»Ð¾Ð²Ð¸Ñ: " << endl;
+    cout << "ÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ 1, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ñ€ÐµÑˆÐµÐ½Ð¸Ðµ" << endl;
+    cout << "ÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ 2, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð²Ñ‹Ð¹Ñ‚Ð¸" << endl;
 
     
     z=_getch();
     switch(z)
     {
     case '0': {
-                  cout << "Ñìåíèòü çíàê ìèíèìàëüíîãî ýëåìåíòà ìàññèâà À(N,N), åñëè îí íàõîäèòñÿ âûøå ãëàâíîé äèàãîíàëè." << endl;  
+                  cout << "Ð¡Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð·Ð½Ð°Ðº Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° Ð¼Ð°ÑÑÐ¸Ð²Ð° Ð(N,N), ÐµÑÐ»Ð¸ Ð¾Ð½ Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÑ Ð²Ñ‹ÑˆÐµ Ð³Ð»Ð°Ð²Ð½Ð¾Ð¹ Ð´Ð¸Ð°Ð³Ð¾Ð½Ð°Ð»Ð¸." << endl;  
                   return 0;
               }
 
@@ -147,7 +187,7 @@ int printcondition()
 
     case '2' : return 2;
 
-    default: cout << "Íåêîððåêòíûé ââîä" << endl; 
+    default: cout << "ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð²Ð²Ð¾Ð´" << endl; 
         return 3;
 
     }
@@ -166,7 +206,7 @@ void vvodMatr(int **Mas, int N)
     switch(z)
     {
     case '1': {
-                  cout << "Ââîäèòå çàí÷åíèå ìàòðèöû" << N << "õ" << N << endl;
+                  cout << "Ð’Ð²Ð¾Ð´Ð¸Ñ‚Ðµ Ð·Ð°Ð½Ñ‡ÐµÐ½Ð¸Ðµ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹" << N << "Ñ…" << N << endl;
                   inputarray(Mas, N);
                   ok = true;
                   break;
@@ -174,12 +214,12 @@ void vvodMatr(int **Mas, int N)
 
     case '2' :   {
         initarray(Mas, N);
-        cout << "Ìàòðèöà ñãåíåðèðîâàíà" << endl;
+        cout << "ÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ð° ÑÐ³ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð°" << endl;
         ok = true;
         break;
                  }
 
-    default: cout << "Ïîâòîðèòå ââîä: " << endl;
+    default: cout << "ÐŸÐ¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚Ðµ Ð²Ð²Ð¾Ð´: " << endl;
 
     }
 

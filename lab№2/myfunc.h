@@ -6,3 +6,4 @@ void changesign(int **mas, int m, int k);
 int printcondition();
 void vvodMatr(int **Mas, int N);
 int lab2();
+int MinElementNew(int **mas, int m, int *a, int *b );
